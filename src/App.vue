@@ -9,7 +9,7 @@
       <span class="mdl-layout-title">ddori PWA</span>
       <nav class="mdl-navigation">
         <router-link class="mdl-navigation__link" to="/" @click.native="hideMenu">Home</router-link>
-        <router-link class="mdl-navigation__link" to="/post" @click.native="hideMenu">Post a picture</router-link>
+        <router-link class="mdl-navigation__link" to="/fine_dust" @click.native="hideMenu">미세먼지</router-link>
       </nav>
     </div>
     <main class="mdl-layout__content">
@@ -17,6 +17,7 @@
         <router-view></router-view>
       </div>
     </main>
+    <div class="mdl-spinner mdl-js-spinner is-active center"></div>
   </div>
 </template>
 
@@ -37,5 +38,7 @@ export default {
   
   @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
   @import url('https://code.getmdl.io/1.2.1/material.blue-red.min.css');
+  
+  .center{position:absolute;left:50%;transform:translateX(-50%);top:50%}
 
 </style>
