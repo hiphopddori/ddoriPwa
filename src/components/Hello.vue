@@ -1,16 +1,36 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <h1 v-bind=:getMeetDay">{{ msg }}</h1>
+    <table>
+      <tbody>
+          <tr v-for="user in users">
+                <td>{{user.name}} </td>
+                <td>{{user.age}}</td>
+          </tr>
+      </tbody>
+    </table>  
   </div>
 </template>
 
 <script>
+
+import {fb} from '../service/firebase'
+
 export default {
   name: 'hello',
+  firebase:{
+      users: fb.ref('users')
+  },
+
   data () {
     return {
-      msg: 'Router Contents : HOME'
+      msg: 'HOME'
     }
+  },
+  methods:{
+     getMeetDay(){
+          alert(this.$firebaseRefs.users.child("1").name);
+     }
   }
 }
 </script>

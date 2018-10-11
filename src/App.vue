@@ -1,44 +1,72 @@
 <template>
-  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-    <header class="mdl-layout__header">
-      <div class="mdl-layout__header-row">
-        <span class="mdl-layout-title">ddori PWA</span>
-      </div>
-    </header>
-    <div class="mdl-layout__drawer">
-      <span class="mdl-layout-title">ddori PWA</span>
-      <nav class="mdl-navigation">
-        <router-link class="mdl-navigation__link" to="/" @click.native="hideMenu">Home</router-link>
-        <router-link class="mdl-navigation__link" to="/fine_dust" @click.native="hideMenu">미세먼지</router-link>
-      </nav>
-    </div>
-    <main class="mdl-layout__content">
-      <div class="page-content">
-        <router-view></router-view>
-      </div>
-    </main>
-    <div class="mdl-spinner mdl-js-spinner is-active center"></div>
-  </div>
+  <v-app id="inspire">
+    <v-navigation-drawer
+      fixed
+      v-model="drawer"
+      app
+    >
+      <v-list dense>
+        <v-list-tile >
+          <v-list-tile-action>
+            <v-icon>home</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title><router-link to="/">Home</router-link></v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+        <v-list-tile >
+          <v-list-tile-action>
+            <v-icon>child_care</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title><router-link to="/fine_dust">미세먼지</router-link></v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+    </v-navigation-drawer>
+    <v-toolbar color="indigo" dark fixed app>
+      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+      <v-toolbar-title>ddori PWA</v-toolbar-title>
+    </v-toolbar>
+    <v-content>
+      <v-container fluid fill-height>
+        <v-layout
+          justify-center
+          align-center
+        >
+          <v-flex text-xs-center>
+              <router-view></router-view>  
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </v-content>
+    <v-footer color="indigo" app>
+      <span class="white--text">&copy; 2018</span>
+    </v-footer>
+  </v-app>
 </template>
 
 <script>
-require('material-design-lite')  
+
 export default {
   name: 'app'
+  ,data: () => ({
+      drawer: null
+   })
   ,methods :{
-      hideMenu: function () {
-        document.getElementsByClassName('mdl-layout__drawer')[0].classList.remove('is-visible')
-        document.getElementsByClassName('mdl-layout__obfuscator')[0].classList.remove('is-visible')
-      }
+     
+  }
+  ,props: {
+      source: String
   }
 }
 </script>
 
 <style>
-  
+  /*
   @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
   @import url('https://code.getmdl.io/1.2.1/material.blue-red.min.css');
-  
   .center{position:absolute;left:50%;transform:translateX(-50%);top:50%}
-
+  */
+   
 </style>
